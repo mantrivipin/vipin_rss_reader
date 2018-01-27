@@ -1,0 +1,15 @@
+<div class="container">
+  <% if @entries.blank? %>
+    There are no entries to show.
+    <%= link_to "Go Back", root_path %>
+  <% else %>
+    <% @entries.each do |entry| %>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%= link_to entry.title, entry.url, target: "_blank" %> 
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
