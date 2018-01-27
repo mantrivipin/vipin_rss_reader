@@ -9,14 +9,20 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <% if user_signed_in? %>
-      <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
-    <% else %>
-      <%= link_to('Login', new_user_session_path)  %>  
-      <%= link_to "Sign Up", new_user_registration_path %>
-    <% end %>
-    <%= yield %>
+    <%= render 'shared/navigation' %>
+    <div id="main-container" class="container">
+      <div class = "row">
+        <div class = "col-xs-12">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9">
+          <%= yield %>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    </div>
   </body>
 </html>

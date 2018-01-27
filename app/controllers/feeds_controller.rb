@@ -4,6 +4,7 @@ class FeedsController < ApplicationController
 
   def index
     @feeds = current_user.feeds.all
+    update_subscribed_feeds
   end
 
   def show
@@ -58,5 +59,10 @@ class FeedsController < ApplicationController
     # whitelist parameters
     def feed_params
       params.require(:feed).permit(:name, :url, :description)
+    end
+    
+    # run background job after index call
+    def update_subscribed_feeds
+      CreateFeedEntriesJob.perform_now
     end
 end

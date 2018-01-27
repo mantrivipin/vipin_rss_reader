@@ -1,6 +1,11 @@
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><%= link_to 'View Feeds', root_path %></li>
+  <li><%= link_to 'New Feed', new_feed_path %></li>
+</ul>
+
 <h1>Feeds</h1>
 
-<table>
+<table class = "table">
   <thead>
     <tr>
       <% if @feeds.present? %>
@@ -18,20 +23,17 @@
         <td><%= feed.name %></td>
         <td><%= feed.url %></td>
         <td><%= feed.description %></td>
-        <td><%= link_to 'Show', feed %></td>
-        <td><%= link_to 'Edit', edit_feed_path(feed) %></td>
-        <td><%= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class = "btn-default btn-xs"><%= link_to 'Show', feed %></td>
+        <td class = "btn-default btn-xs"><%= link_to 'Edit', edit_feed_path(feed) %></td>
+        <td class = "btn-default btn-xs"><%= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-<ul>
-  <li>
-    <%= link_to 'New Feed', new_feed_path %>
-  </li>
-  <li>
-    <%= link_to 'See Feeds', entries_index_path %>
-  </li>
-</ul>
+<br/>
+<br/>
+
+<%= link_to new_feed_path, class: 'btn btn-default' do %>
+  <i class="glyphicon glyphicon-plus"></i> New Feed
+<% end %>
