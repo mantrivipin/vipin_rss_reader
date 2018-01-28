@@ -1,8 +1,8 @@
 <div class="container">
   <% if @entries.blank? %>
-    There are no entries to show.
-    <%= link_to "Go Back", root_path %>
+    <i>There are no entries to show.</i>
   <% else %>
+    <h1>Entries</h1>
     <% @entries.each do |entry| %>
       <div class="panel panel-default">
         <div class="panel-body">
@@ -10,6 +10,8 @@
         </div>
       </div>
     <% end %>
+    <%= will_paginate @entries, renderer: BootstrapPagination::Rails %>
+
   <% end %>
 </div>
 
