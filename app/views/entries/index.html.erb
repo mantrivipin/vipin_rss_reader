@@ -1,0 +1,17 @@
+<div class="container">
+  <% if @entries.blank? %>
+    <i>There are no entries to show.</i>
+  <% else %>
+    <h1>Entries</h1>
+    <% @entries.each do |entry| %>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%= link_to entry.title, entry.url, target: "_blank" %> 
+        </div>
+      </div>
+    <% end %>
+    <%= will_paginate @entries, renderer: BootstrapPagination::Rails %>
+
+  <% end %>
+</div>
+

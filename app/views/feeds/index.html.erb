@@ -1,0 +1,42 @@
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><%= link_to 'View Feeds', root_path %></li>
+  <li><%= link_to 'New Feed', new_feed_path %></li>
+</ul>
+
+<h1>Feeds</h1>
+
+<table class = "table">
+  <thead>
+    <tr>
+      <% if @feeds.present? %>
+        <th>Name</th>
+        <th>Url</th>
+        <th>Description</th>
+        <th colspan="3"></th>
+      <% else %>
+        <i> There are no feeds you subscribed to.</i>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @feeds.each do |feed| %>
+      <tr>
+        <td><%= feed.name %></td>
+        <td><%= feed.url %></td>
+        <td><%= feed.description %></td>
+        <td class = "btn-default btn-xs"><%= link_to 'Show', feed %></td>
+        <td class = "btn-default btn-xs"><%= link_to 'Edit', edit_feed_path(feed) %></td>
+        <td class = "btn-default btn-xs"><%= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  <%= will_paginate @feeds, renderer: BootstrapPagination::Rails %>
+</table>
+
+<br/>
+<br/>
+
+<%= link_to new_feed_path, class: 'btn btn-default' do %>
+  <i class="glyphicon glyphicon-plus"></i> New Feed
+<% end %>

@@ -9,6 +9,20 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'shared/navigation' %>
+    <div id="main-container" class="container">
+      <div class = "row">
+        <div class = "col-xs-12">
+          <p class="notice"><%= notice %></p>
+          <p class="alert"><%= alert %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-9">
+          <%= yield %>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    </div>
   </body>
 </html>
