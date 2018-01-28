@@ -3,8 +3,8 @@ class FeedsController < ApplicationController
   before_action :set_feed, only: [:show, :edit, :update, :destroy]
 
   def index
-    @feeds = current_user.feeds.all
-    update_subscribed_feeds
+    @feeds = current_user.feeds.paginate(page: params[:page], per_page: 15)
+    update_subscribed_feeds # Patch Work to run background job as cron job is not running on my machine
   end
 
   def show
@@ -61,8 +61,8 @@ class FeedsController < ApplicationController
       params.require(:feed).permit(:name, :url, :description)
     end
     
-    # run background job after index call
+    # Patch Work to run background job as cron job is not running on my machine
     def update_subscribed_feeds
-      CreateFeedEntriesJob.perform_now
+      CreateFeedEntriesJob.delay.perform_now
     end
 end
